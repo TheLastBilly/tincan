@@ -1,1 +1,4 @@
 toolchain/
+qemu/
+*.o
+*.elf
