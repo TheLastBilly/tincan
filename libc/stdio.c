@@ -78,7 +78,7 @@ void vsnprintf(char * dest, size_t size, const char * fmt, va_list va)
                 {
                     c_ptr_tmp = (char*)va_arg(va, char*); 
                     i_tmp = strlen(c_ptr_tmp);
-                    if(i_tmp > (size - dest_count))
+                    if((size_t)i_tmp > (size - dest_count))
                         i_tmp = (size - dest_count);
                     strncat(&dest[dest_count], c_ptr_tmp, i_tmp);
                     dest_count += i_tmp;

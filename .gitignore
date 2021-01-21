@@ -2,3 +2,4 @@ toolchain/
 qemu/
 *.o
 *.elf
+.vscode/
