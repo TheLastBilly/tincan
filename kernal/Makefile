@@ -7,7 +7,7 @@ include make.config
 all: $(KERNAL_OBJS)
 
 %.o: %.c
-	$(ARM_TOOLCHAIN) $(C_INC_FLAGS) $(C_FLAGS) -o $@ $<
+	$(ARM_TOOLCHAIN) $(C_INC_FLAGS) $(CFLAGS) -o $@ $<
 
 %.o: %.S
 	$(ARM_TOOLCHAIN) $(ASM_FLAGS) $< -o $@

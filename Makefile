@@ -12,8 +12,11 @@ BIN:=$(PROJECT_NAME).bin
 
 LD:=$(PROJECT_NAME).ld
 
+.PHONY: all clean debug link binary
+
 all: make-kernal make-libc make-bootloader link binary
 
+build: all
 rebuild: clean all
 
 # Build
@@ -53,7 +56,7 @@ run:
 	$(QEMU) $(QEMU_FLAGS) $(ELF)
 
 flash:
-	$(STFLASH) --reset write $(BIN) 0x8000000
+	$(STFLASH) $(STFLASH_FLAGS) $(BIN) 0x8000000
 
-debug:
+gdb:
 	$(GDB) $(GDB_FLAGS)

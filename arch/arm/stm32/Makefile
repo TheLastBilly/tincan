@@ -6,7 +6,7 @@ include ./make.config
 all: $(BOOT_OBJS)
 
 %.o: %.c
-	$(ARM_TOOLCHAIN) $(C_FLAGS) $< -o $@
+	$(ARM_TOOLCHAIN) $(CFLAGS) $< -o $@
 
 clean:
 	-rm $(BOOT_OBJS)
