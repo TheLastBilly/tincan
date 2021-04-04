@@ -27,8 +27,8 @@ volatile BINT_T * vector_table[BOOT_VTABLE_SIZE] __attribute__((section(".vector
 void bmain()
 {
     // Copy .data section into ram
-    BINT_T *src, *dest;
-    //for(src = &_ldata, dest = &_sdata; src < _edata; src++, dest++) *dest = *src;
+    volatile BINT_T *src, *dest;
+    for(src = &_ldata, dest = &_sdata; dest < &_edata; src++, dest++) *dest = *src;
 
     // Clear the .bss section
     for(dest = &_sbss; dest < _ebss; dest++) *dest = 0;

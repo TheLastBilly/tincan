@@ -28,7 +28,7 @@ SECTIONS
         *(.rodata)
         *(.rodata*)
         . = ALIGN(4);
-    }
+    } > FLASH
 
     /* The AT is because the data section will also go to ram, so the variables */
     /* will be pointing to the RAM's VMA space. Tp put it simply, .data represent */
@@ -38,8 +38,7 @@ SECTIONS
     /* need to write them to ROM, and then, at boot time, we move them to ram. The */
     /* linker will make sure to make the pointers to them in the code, point to their */
     /* RAM addresses (and that's were the Virtual Memory Address (VMA) part comes in) */
-    _ldata = .;         /* _ldata will be used to know where in the FLASH .data is located*/
-    .data : AT(_ldata)
+    .data :
     {
         . = ALIGN(4);
         _sdata = .;     /* _sdata and _edata represent the RAM locations of data    */
@@ -47,7 +46,9 @@ SECTIONS
         *(.data*)
         _edata = .;
         . = ALIGN(4);
-    } > RAM
+    } > RAM AT > FLASH
+    /* _ldata will be used to know where in the FLASH .data is located*/
+    _ldata = LOADADDR(.data);
 
     .bss :
     {

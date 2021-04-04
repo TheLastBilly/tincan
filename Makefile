@@ -53,7 +53,7 @@ run:
 	$(QEMU) $(QEMU_FLAGS) $(ELF)
 
 flash:
-	$(STFLASH) write $(BIN) 0x8000000
+	$(STFLASH) --reset write $(BIN) 0x8000000
 
 debug:
-	$(GDB) -m -v99 $(GDB_FLAGS)
+	$(GDB) $(GDB_FLAGS)
