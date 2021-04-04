@@ -26,13 +26,16 @@ volatile STM32F4_UINT32 * vector_table[BOOT_VTABLE_SIZE] __attribute__((section(
     (STM32F4_UINT32 *) bmain
 };
 
+static inline wait_us(volatile STM32F4_UINT32 time) { while(time-- > 1); }
+
 // Entrypoint for the bootloader
 void bmain()
 {
-    // Copy .data section into ram
     volatile STM32F4_UINT32 *src, *dest;
     stm32f4_rcc_reg* rcc = RCC_REG;
     stm32f4_gpio_reg* gpiob = GPIOB_REG;
+
+    // Copy .data section into ram
     volatile STM32F4_UINT32 *led = &gpiob->odr;
     for(src = &_ldata, dest = &_sdata; dest < &_edata; src++, dest++) *dest = *src;
 
@@ -41,11 +44,15 @@ void bmain()
 
     GPIO_ENABLE_PORT(GPIO_PORTB);
     GPIO_PORTB_MODE(14, GPIO_OUTPUT_MODE);
-    GPIO_OUT_PORTB_PIN(14, 1);
-    gpiob = GPIOB_REG;
-    GPIO_OUT_PORTB_PIN(14, 0);
-    gpiob = GPIOB_REG;
-    GPIO_OUT_PORTB_PIN(14, 1);
+    int times = 10;
+
+    while(times-- > 1)
+    {
+        GPIO_OUT_PORTB_PIN(14, 1);
+        wait_us(0x1000000/5);
+        GPIO_OUT_PORTB_PIN(14, 0);
+        wait_us(0x1000000/5);
+    }
 
     // Move on to the kernel
     kmain();
