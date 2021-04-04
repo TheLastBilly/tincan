@@ -3,22 +3,22 @@ PROJECT_NAME:=tincan
 
 include $(ROOT)/globals.config
 
-include $(ROOT)/boot/make.config
-include $(ROOT)/kernal/make.config
-include $(ROOT)/libc/make.config
+include $(ARCH_ROOT)/make.config
+include $(KERNAL_ROOT)/make.config
+include $(LIBC_ROOT)/make.config
 
 ELF:=$(PROJECT_NAME).elf
 BIN:=$(PROJECT_NAME).bin
 
 LD:=$(PROJECT_NAME).ld
 
-rebuild: clean all
+all: make-kernal make-libc make-bootloader link binary
 
-all: make-kernal make-libc make-bootloader link #binary
+rebuild: clean all
 
 # Build
 make-bootloader:
-	$(MAKE) -C $(BOOT_ROOT)
+	$(MAKE) -C $(ARCH_ROOT)
 
 make-libc:
 	$(MAKE) -C $(LIBC_ROOT)
@@ -30,14 +30,14 @@ make-kernal:
 link:
 	$(ARM_TOOLCHAIN) $(LINKER_FLAGS) -T $(LD) $(BOOT_OBJS) $(KERNAL_OBJS) $(LIBC_OBJS) -o $(ELF)
 
-# binary:
-# 	$(OBJCOPY) $(OBJ_FLAGS) $(ELF) $(BIN)
+binary:
+	$(OBJCOPY) $(OBJ_FLAGS) $(ELF) $(BIN)
 
 #Cleanning
-clean: clean-root clean-bootloader clean-kernal clean-libc
+clean: clean-root clean-arch clean-kernal clean-libc
 
-clean-bootloader:
-	$(MAKE) -C $(BOOT_ROOT) clean
+clean-arch:
+	$(MAKE) -C $(ARCH_ROOT) clean
 
 clean-kernal:
 	$(MAKE) -C $(KERNAL_ROOT) clean
@@ -51,3 +51,9 @@ clean-root:
 
 run:
 	$(QEMU) $(QEMU_FLAGS) $(ELF)
+
+flash:
+	$(STFLASH) write $(BIN) 0x8000000
+
+debug:
+	$(GDB) -m -v99 $(GDB_FLAGS)

@@ -1,12 +1,8 @@
 #include <kernal/serial.h>
 
-int kmain()
+void kmain()
 {
-    k_uart_init();
-    k_uart_puts("Hello everyone!");   
-    while (1) {
-        k_uart_putc(k_uart_getc());
-        k_uart_putc('\n');
-    }
-    return 0;
+    volatile int testing = 0x0001;
+    int increment = 0;
+    increment++;
 }
