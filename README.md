@@ -8,7 +8,7 @@ A research project on Operating Systems and the ARM architecture. As of now, the
     - Others
 - Develop a functional dynamic memory management framework
 - Develop a process management system
-- Implement a [**ELF**](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) loading system
+- Implement an [**ELF**](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) loading system
 - Document everything
 
 ## Building And Flashing
@@ -66,7 +66,7 @@ toolchain/bin/arm-none-eabi-gdb ./tincan.elf -ex "target extended-remote localho
 
 **Note: I'm using the `3333` port because that's the one that my `make debug` command told me to use, but it may be different in your case.**
 
-But I know you're better than that, and since I also ~~hope~~ know that you're using [`vscode`](https://code.visualstudio.com/), I'll show you how to do it from there instead:
+But I know you're better than that, and since I also ~~hope~~ know that you're using [**vscode**](https://code.visualstudio.com/), I'll show you how to do it from there instead:
 
 - First, create a file called **./.vscode/launch.json**** in the repo's directory and copy the following contents into it.
     ```json
@@ -93,7 +93,7 @@ But I know you're better than that, and since I also ~~hope~~ know that you're u
 - Voilà!
 
 ## Useful Resources
-- The [**doc/**]("docs/") folder. (I don't know if I should copy and paste PDFs like that, so I'll take notes out of them later instead)
+- The [**doc/**]("docs/") folder. (I don't know if I should copy and paste PDFs like that, so I'll probably just take some notes out of the in the future)
 - [STM32 Baremetal Examples Series](https://vivonomicon.com/category/stm32_baremetal_examples/)
 - [Going Bare Metal On STM32](https://karooza.net/going-bare-metal-on-stm32)
 - [The STM32F429 (and other MCUs) programming manual](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf)
