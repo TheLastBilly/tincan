@@ -57,7 +57,7 @@ As you may have already noticed, this project uses `make` as its build system, s
 **Note: `make` wont detect any changes to the code that were made after a build, and while there's probably a better way to go about this, just use `make rebuild` when you want to test any changes**
 ### Bonus: Debugging
 #### Building A Debug Image
-This is one of the things I need to work on the most, but for now, just go into [**globals.config**](./globals.config) and add the `-g` option to `CFLAGS`. You can then just use `make` to build the image (`make rebuild` if you already built a non debug image).
+This is one of the things I need to work on the most, but for now, just go into [**globals.config**](./globals.config) and add the `-g` option to `CFLAGS`. You can then just use `make` to build the image (`make rebuild` if you've already built a non debug image).
 #### GDB
 You can of course just run `make gdb` and use the following command to launch a `gdb` client with the generated **tincan.elf** file like a true caveman:
 ```bash
@@ -88,9 +88,8 @@ But I know you're better than that, and since I also ~~hope~~ know that you're u
     }
     ```
     **Note: If you alread have one created just copy the entry from `configurations` into yours (a.k.a: what's in between `"configurations": [` and `]`). Make sure you separate them with a comma.**
-- Run `make run` on another terminal window on the repo's directory
-- Go into any file you'd like to debug on vscode and click on the "Run and Debug" tab at the left of the screen. Then, select the "GDB" configuration option.
-- Voilà!
+- Run `make run` from another terminal window on the repo's directory
+- Go into any file you'd like to debug on vscode and click on the "Run and Debug" tab at the left of the screen. Then, select the "GDB" configuration option and Voilà!.
 
 ## Useful Resources
 - The [**doc/**]("docs/") folder. (I don't know if I should copy and paste PDFs like that, so I'll probably just take some notes out of the in the future)
