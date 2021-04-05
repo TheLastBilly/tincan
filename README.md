@@ -8,11 +8,11 @@ A research project on Operating Systems and the ARM architecture. As of now, the
     - Others
 - Develop a functional dynamic memory management framework
 - Develop a process management system
-- Implement a [`ELF`](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) loading system
+- Implement a [**ELF**](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) loading system
 - Document everything
 
 ## Building And Flashing
-Right now this is in a very, VERY, experimental (so basically incomplete) state, so even if you are able to build it, don't expect it to run properly. Also, while you can definetly build this repo and get a `.bin` file out, but it wont be of much use if you don't flash it somewhere. Now, I know this could be simulated in qemu (and if you look through the repo's history, you'll see that I was doing that with a RPI in the past), but I just haven't had the time to set that up again.
+Right now this is in a very, VERY, experimental (so basically incomplete) state, so even if you are able to build it, don't expect it to run properly. Also, while you can definetly build this repo and get a **.bin** file out, but it wont be of much use if you don't have somewhere to flash it into. Now, I know this could be simulated in qemu (and if you look through the repo's history, you'll see that I was doing that with a RPI in the past), but I just haven't had the time to set that up again.
 
 ### Requirements
 **Absolutely needed**
@@ -56,10 +56,10 @@ AS you may have already noticed, this project uses `make` as its build system, s
 
 ### Bonus: Debugging
 #### Building a debug image
-This is one of the things I need to work on, but in the mean time, just go into [`globals.config`](./globals.config) and add the `-g` option to `CFLAGS`.
+This is one of the things I need to work on, but in the mean time, just go into [**globals.config**](./globals.config) and add the `-g` option to `CFLAGS`.
 
 #### GDB
-You can of course just run `make gdb` and use the following command to launch a `gdb` client with the generated `tincan.elf` file like a true caveman:
+You can of course just run `make gdb` and use the following command to launch a `gdb` client with the generated **tincan.elf** file like a true caveman:
 ```bash
 toolchain/bin/arm-none-eabi-gdb ./tincan.elf -ex "target extended-remote localhost:3333"
 ```
@@ -68,7 +68,7 @@ toolchain/bin/arm-none-eabi-gdb ./tincan.elf -ex "target extended-remote localho
 
 But I know you're better than that, and since I also ~~hope~~ know that you're using [`vscode`](https://code.visualstudio.com/), I'll show you how to do it from there instead:
 
-- First, create a file called `./.vscode/launch.json` in the repo's directory and copy the following contents into it.
+- First, create a file called **./.vscode/launch.json**** in the repo's directory and copy the following contents into it.
     ```json
     {
         "version": "0.2.0",
@@ -93,7 +93,7 @@ But I know you're better than that, and since I also ~~hope~~ know that you're u
 - Voilà!
 
 ## Useful Resources
-- The [`doc/`]("docs/") folder. (I don't know if I should copy and paste PDFs like that, so I'll take notes out of them later instead)
+- The [**doc/**]("docs/") folder. (I don't know if I should copy and paste PDFs like that, so I'll take notes out of them later instead)
 - [STM32 Baremetal Examples Series](https://vivonomicon.com/category/stm32_baremetal_examples/)
 - [Going Bare Metal On STM32](https://karooza.net/going-bare-metal-on-stm32)
 - [The STM32F429 (and other MCUs) programming manual](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf)
